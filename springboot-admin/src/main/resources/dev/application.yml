@@ -1,0 +1,36 @@
+server:
+  #端口号
+  port: 9000
+  servlet:
+    context-path: /springboot-admin
+
+#spring相关配置
+spring:
+  application:
+    name: springboot-admin
+  security:
+    user:
+      name: fanxueli
+      password: 123456
+  boot:
+    admin:
+#      client:
+#        username: fanxueli
+#        password: 123456
+#        url: http://192.168.116.9:9000
+#        instance:
+#          name: springboot-admin
+#          prefer-ip: true
+#          metadata:
+#            user.name: fanxueli
+#            user.password: 123456
+      ui:
+        brand: "<img src=\"assets/img/icon-spring-boot-admin.svg\"><span>Spring Boot Admin</span>"
+        title: "Spring Boot Admin"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+        exclude: shutdown

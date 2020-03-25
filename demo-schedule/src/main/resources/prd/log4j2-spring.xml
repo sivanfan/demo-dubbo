@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <Properties>
+        <Property name="logPath" value="/home/sivan/logs/demo-schedule.log" />
+        <Property name="logPattern" value="%d{HH:mm:ss.SSS}|%-5p|%X{LOG_ID}|%C{1.}.%M\(%L\):%m%n" />
+    </Properties>
+
+    <Appenders>
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="${logPattern}"/>
+        </Console>
+
+        <RollingFile name="FILE" fileName="${logPath}"
+                     filePattern="${logPath}.%d{yyyy-MM-dd}.log">
+            <PatternLayout pattern="${logPattern}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+            </Policies>
+        </RollingFile>
+        <Async name="Async">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
+        </Async>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="FILE"/>
+        </Root>
+        <Logger name="org.mybatis" level="INFO"/>
+        <Logger name="org.springframework" level="INFO"/>
+        <Logger name="org.apache.zookeeper" level="WARN"/>
+        <Logger name="java.sql.Connection" level="DEBUG"/>
+        <Logger name="java.sql.Statement" level="DEBUG"/>
+        <Logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    </Loggers>
+</configuration>

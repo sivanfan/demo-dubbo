@@ -1,0 +1,13 @@
+spring:
+  application:
+      name: demo-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.116.9:8848,192.168.116.9:8847,192.168.116.9:8846
+        file-extension: yml
+        prefix: demo-service
+  profiles:
+    active:  dev
+  main:
+    allow-bean-definition-overriding: true

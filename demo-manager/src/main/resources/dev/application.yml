@@ -1,0 +1,44 @@
+server:
+  #端口号
+  port: 8089
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /demo-manager
+    #开发环境可以使用，生产环境去掉
+    jsp:
+      init-parameters:
+        development: true
+  tomcat:
+    uri-encoding: UTF-8
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address:  nacos://192.168.116.9:8848?backup=192.168.116.9:8847,192.168.116.9:8846
+
+#spring相关配置
+spring:
+  mvc:
+    view:
+      # 页面默认前缀目录
+      prefix: /WEB-INF/jsp
+      # 响应页面默认后缀
+      suffix: .jsp
+  application:
+    name: demo-manager
+  main:
+    allow-bean-definition-overriding: true
+  boot:
+    admin:
+      client:
+        url: http://localhost:9000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+  main:
+    allow-bean-definition-overriding: true

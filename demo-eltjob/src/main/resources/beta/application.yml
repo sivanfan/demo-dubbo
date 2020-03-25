@@ -1,0 +1,16 @@
+server:
+  #端口号
+  port: 8190
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /demo-eltjob
+  tomcat:
+    uri-encoding: UTF-8
+#spring相关配置
+spring:
+  application:
+    name: demo-eltjob
+
+#自定义参数
+#访问service服务的地址
+serviceUrl: http://localhost:8777/demo-service/api/v1.0

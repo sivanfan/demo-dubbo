@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd
+                        ">
+    <!--配置作业注册中心 -->
+    <reg:zookeeper id="regCenter" server-lists="192.168.116.9:6181" namespace="eltjob"
+                   base-sleep-time-milliseconds="1000" session-timeout-milliseconds="60000"
+                   max-sleep-time-milliseconds="3000" max-retries="3"/>
+
+    <!-- 配置作业 -->
+    <job:simple id="testJob" class="com.ule.demo.eltjob.tasks.TestJob" registry-center-ref="regCenter"
+                cron="0/20 * * * * ?" sharding-item-parameters="0=A,1=B" description="这个一个定时任务" sharding-total-count="1"
+                job-exception-handler="com.ule.demo.eltjob.exceptionhandler.TestJobExceptionHandler"
+                event-trace-rdb-data-source="dataSource" overwrite="true"/>
+
+</beans>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ule</groupId>
+    <artifactId>demo-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <modules>
+        <module>demo-api</module>
+        <module>demo-common</module>
+        <module>demo-service</module>
+        <module>demo-manager</module>
+        <module>demo-schedule</module>
+        <module>demo-eltjob</module>
+        <module>springboot-admin</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.12.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <env>dev</env>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.test.skip>true</maven.test.skip>
+        <lombok.version>1.18.4</lombok.version>
+        <pagehelper.version>1.2.5</pagehelper.version>
+        <guava.version>25.1-jre</guava.version>
+        <axis2.version>1.7.9</axis2.version>
+        <spring-cloud.version>Greenwich.SR4</spring-cloud.version>
+        <dubbo.version>2.6.7</dubbo.version>
+        <dubbo-registry-nacos.version>2.6.7</dubbo-registry-nacos.version>
+        <dubbo-spring-context-support.version>1.0.2</dubbo-spring-context-support.version>
+        <dubbo-spring-boot-starter.version>0.2.1.RELEASE</dubbo-spring-boot-starter.version>
+        <nacos-discovery-spring-boot-starter.version>0.2.4</nacos-discovery-spring-boot-starter.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-alibaba-dependencies -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+               <version>2.1.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--<distributionManagement>
+        <repository>
+            <id>tom-maven-repository</id>
+            <name>Tom Maven Repository</name>
+            <url>http://maven.${env}.ulechina.tom.com/artifactory/libs-releases-local</url>
+        </repository>
+    </distributionManagement>-->
+
+    <distributionManagement>
+        <repository>
+            <id>my.server</id>
+            <url>${ReleaseRepository}</url>
+        </repository>
+        <snapshotRepository>
+            <id>my.server</id>
+            <url>${SnapshotRepository}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>internal</id>
+            <name>Tom Central Maven Repository</name>
+            <layout>default</layout>
+            <url>http://maven.${env}.ulechina.tom.com/artifactory/repo</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>

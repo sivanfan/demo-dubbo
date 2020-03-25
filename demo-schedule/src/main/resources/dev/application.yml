@@ -1,0 +1,32 @@
+server:
+  #端口号
+  port: 8189
+  #项目名，如果不设定，默认是 /
+  servlet:
+    context-path: /demo-schedule
+    #开发环境可以使用，生产环境去掉
+    jsp:
+      init-parameters:
+        development: true
+  tomcat:
+    uri-encoding: UTF-8
+
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address:  nacos://192.168.116.9:8848
+
+#spring相关配置
+spring:
+  mvc:
+    view:
+      # 页面默认前缀目录
+      prefix: /WEB-INF/jsp
+      # 响应页面默认后缀
+      suffix: .jsp
+  application:
+    name: demo-schedule
+  main:
+    allow-bean-definition-overriding: true
+#自定义参数
